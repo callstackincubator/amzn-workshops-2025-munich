@@ -1,0 +1,3 @@
+[submodule "vega-sports-app"]
+	path = vega-sports-app
+	url = https://github.com/AmazonAppDev/vega-sports-app.git
