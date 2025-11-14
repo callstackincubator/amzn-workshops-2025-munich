@@ -27,6 +27,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -57,4 +58,15 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.fragment:fragment-compose:1.8.9")
+    implementation("com.rockrnappreact:rockrnapp:0.0.1-local")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+}
+configurations.all {
+    resolutionStrategy {
+        // force Gradle to always check for new versions of changing modules
+        cacheChangingModulesFor(0, "seconds")
+        cacheDynamicVersionsFor(0, "seconds")
+    }
 }
