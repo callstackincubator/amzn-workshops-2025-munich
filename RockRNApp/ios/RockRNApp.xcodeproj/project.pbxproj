@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C80B921A6F3F58F76C31292 /* libPods-RockRNApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-RockRNApp.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		20D164A02D4D80800039A91E /* RockRNAppReact.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D1649E2D4D80800039A91E /* RockRNAppReact.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20D164A22D4D80990039A91E /* RockRNAppReact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D164A12D4D80950039A91E /* RockRNAppReact.swift */; };
+		40E005814A7059CAD51F29C6 /* libPods-RockRNApp-RockRNAppReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30321BFF93293319109170D8 /* libPods-RockRNApp-RockRNAppReact.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		97E35228E523CF9261C56360 /* libPods-RockRNApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9EFEAB905F2D8D919E6786 /* libPods-RockRNApp.a */; };
 		B16C603D25A2E5456D38112F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		EDA002E0DFA8527FF5D5842C /* libPods-RockRNApp-RockRNAppReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D06AE30BEEBAE62C7FEE7CE3 /* libPods-RockRNApp-RockRNAppReact.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D362C385F853F9894D0B77F /* Pods-RockRNApp-RockRNAppReact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp-RockRNAppReact.debug.xcconfig"; path = "Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RockRNApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockRNApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB01A68108700A75B9A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RockRNApp/AppDelegate.swift; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RockRNApp/Images.xcassets; sourceTree = "<group>"; };
@@ -26,13 +27,12 @@
 		20D1648D2D4D7FAF0039A91E /* RockRNAppReact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RockRNAppReact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D1649E2D4D80800039A91E /* RockRNAppReact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RockRNAppReact.h; sourceTree = "<group>"; };
 		20D164A12D4D80950039A91E /* RockRNAppReact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockRNAppReact.swift; sourceTree = "<group>"; };
-		25056119C0BDA4CDB86B24D9 /* Pods-RockRNApp-RockRNAppReact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp-RockRNAppReact.release.xcconfig"; path = "Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact.release.xcconfig"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-RockRNApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp.debug.xcconfig"; path = "Target Support Files/Pods-RockRNApp/Pods-RockRNApp.debug.xcconfig"; sourceTree = "<group>"; };
-		4D838915DF00B87281042637 /* Pods-RockRNApp-RockRNAppReact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp-RockRNAppReact.debug.xcconfig"; path = "Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-RockRNApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp.release.xcconfig"; path = "Target Support Files/Pods-RockRNApp/Pods-RockRNApp.release.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-RockRNApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RockRNApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9EFEAB905F2D8D919E6786 /* libPods-RockRNApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RockRNApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30321BFF93293319109170D8 /* libPods-RockRNApp-RockRNAppReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RockRNApp-RockRNAppReact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		373BB757D3F6F9600C691ABC /* Pods-RockRNApp-RockRNAppReact.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp-RockRNAppReact.release.xcconfig"; path = "Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact.release.xcconfig"; sourceTree = "<group>"; };
+		42B183599765F08F1D90E0B3 /* Pods-RockRNApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp.debug.xcconfig"; path = "Target Support Files/Pods-RockRNApp/Pods-RockRNApp.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RockRNApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D06AE30BEEBAE62C7FEE7CE3 /* libPods-RockRNApp-RockRNAppReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RockRNApp-RockRNAppReact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA4EBEB4131FD3D27B6F76D1 /* Pods-RockRNApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockRNApp.release.xcconfig"; path = "Target Support Files/Pods-RockRNApp/Pods-RockRNApp.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-RockRNApp.a in Frameworks */,
+				97E35228E523CF9261C56360 /* libPods-RockRNApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDA002E0DFA8527FF5D5842C /* libPods-RockRNApp-RockRNAppReact.a in Frameworks */,
+				40E005814A7059CAD51F29C6 /* libPods-RockRNApp-RockRNAppReact.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,8 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-RockRNApp.a */,
-				D06AE30BEEBAE62C7FEE7CE3 /* libPods-RockRNApp-RockRNAppReact.a */,
+				2E9EFEAB905F2D8D919E6786 /* libPods-RockRNApp.a */,
+				30321BFF93293319109170D8 /* libPods-RockRNApp-RockRNAppReact.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,10 +121,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-RockRNApp.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-RockRNApp.release.xcconfig */,
-				4D838915DF00B87281042637 /* Pods-RockRNApp-RockRNAppReact.debug.xcconfig */,
-				25056119C0BDA4CDB86B24D9 /* Pods-RockRNApp-RockRNAppReact.release.xcconfig */,
+				42B183599765F08F1D90E0B3 /* Pods-RockRNApp.debug.xcconfig */,
+				DA4EBEB4131FD3D27B6F76D1 /* Pods-RockRNApp.release.xcconfig */,
+				0D362C385F853F9894D0B77F /* Pods-RockRNApp-RockRNAppReact.debug.xcconfig */,
+				373BB757D3F6F9600C691ABC /* Pods-RockRNApp-RockRNAppReact.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -147,13 +147,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RockRNApp" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				D168828E55FA642D38FFFD6B /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				8135FBCFC28EDC1734348BE3 /* [CP] Embed Pods Frameworks */,
+				4FCBF95A9D91DC058D123E11 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,13 +168,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20D164992D4D7FB00039A91E /* Build configuration list for PBXNativeTarget "RockRNAppReact" */;
 			buildPhases = (
-				F59A31FD70D7E14811933F49 /* [CP] Check Pods Manifest.lock */,
+				B8ED07FF95A3CEF5A2EE6BBE /* [CP] Check Pods Manifest.lock */,
 				20D164882D4D7FAF0039A91E /* Headers */,
 				20D164892D4D7FAF0039A91E /* Sources */,
 				20D1648A2D4D7FAF0039A91E /* Frameworks */,
 				20D1648B2D4D7FAF0039A91E /* Resources */,
 				20D164A32D4D82600039A91E /* Bundle React Native code and images */,
-				719E89ABC518E1BDB658B808 /* [CP] Copy Pods Resources */,
+				EAC55B2149AF3BB5609031E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,23 +258,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\nif [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\nsource \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\nsource \"$PODS_ROOT/../.xcode.env.local\"\nfi\nexport CONFIG_CMD=\"dummy-workaround-value\"\nexport CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('rock/package.json')) + '/dist/src/bin.js'\")\"\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		20D164A32D4D82600039A91E /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,24 +278,63 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\nif [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\nsource \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\nsource \"$PODS_ROOT/../.xcode.env.local\"\nfi\nexport CONFIG_CMD=\"dummy-workaround-value\"\nexport CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('rock/package.json')) + '/dist/src/bin.js'\")\"\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		719E89ABC518E1BDB658B808 /* [CP] Copy Pods Resources */ = {
+		4FCBF95A9D91DC058D123E11 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		8135FBCFC28EDC1734348BE3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8ED07FF95A3CEF5A2EE6BBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RockRNApp-RockRNAppReact-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D168828E55FA642D38FFFD6B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -334,43 +356,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		EAC55B2149AF3BB5609031E6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RockRNApp/Pods-RockRNApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F59A31FD70D7E14811933F49 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RockRNApp-RockRNAppReact-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RockRNApp-RockRNAppReact/Pods-RockRNApp-RockRNAppReact-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -397,7 +397,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-RockRNApp.debug.xcconfig */;
+			baseConfigurationReference = 42B183599765F08F1D90E0B3 /* Pods-RockRNApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -425,7 +425,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-RockRNApp.release.xcconfig */;
+			baseConfigurationReference = DA4EBEB4131FD3D27B6F76D1 /* Pods-RockRNApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -451,7 +451,7 @@
 		};
 		20D164962D4D7FB00039A91E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D838915DF00B87281042637 /* Pods-RockRNApp-RockRNAppReact.debug.xcconfig */;
+			baseConfigurationReference = 0D362C385F853F9894D0B77F /* Pods-RockRNApp-RockRNAppReact.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -503,7 +503,7 @@
 		};
 		20D164972D4D7FB00039A91E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25056119C0BDA4CDB86B24D9 /* Pods-RockRNApp-RockRNAppReact.release.xcconfig */;
+			baseConfigurationReference = 373BB757D3F6F9600C691ABC /* Pods-RockRNApp-RockRNAppReact.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -601,6 +601,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-runtimeexecutor/React_runtimeexecutor.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-runtimeexecutor/React_runtimeexecutor.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -621,10 +634,14 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				USE_HERMES = true;
 			};
 			name = Debug;
@@ -671,6 +688,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-runtimeexecutor/React_runtimeexecutor.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-runtimeexecutor/React_runtimeexecutor.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -690,9 +720,13 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
