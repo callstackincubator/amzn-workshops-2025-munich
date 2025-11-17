@@ -7,6 +7,7 @@
 ## Prerequisites
 
 Prepare your development environment:
+
 - follow the official React Native documentation for setting up the [development environment](https://reactnative.dev/docs/set-up-your-environment)
 - it is recommeded to have the Android Studio version upgraded to the newest stable
 - make sure that **Android SDK API level 36** is installed in the SDK Manager
@@ -29,19 +30,22 @@ Prepare your development environment:
    ![](./img/studio-create-new.png)
    ![](./img/studio-create-new-2.png)
 
-5. In the project root run `npm create rock@latest` to create a new React Native mobile app using Rock framework. In our case we'll name it `RockRNApp`. Make sure to pick "Brownfield Android" (and "Brownfield iOS" if you want to support iOS) when asked to select plugins.
+5. In the project root run `npm create rock@latest` to create a new React Native mobile app using Rock framework. In our case we'll name it `RockRNApp`. Make sure to pick:
+
+   - **Brownfield Android**
+   - **(optional) Brownfield iOS** if you want to support iOS
 
    ![](./img/rock-create.png)
 
    Make sure to install dependencies (if you opted out during initialization of Rock framework):
 
-   ```
+   ```sh
    npm install
    ```
 
-> [!IMPORTANT]
-> Checkpoint - at this point, your directory structure should look like this:
-> ![](./img/fs-structure-stage-1.png)
+   > [!IMPORTANT]
+   > Checkpoint - at this point, your directory structure should look like this:
+   > ![](./img/fs-structure-stage-1.png)
 
 ## Enable code sharing between Vega Sports App and Rock React Native mobile app
 
@@ -231,7 +235,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
    module.exports = mergeConfig(getDefaultConfig(__dirname), config);
    ```
 
-5.  Run `npm install` inside `RockRNApp` to install the new dependencies.
+5. Run `npm install` inside `RockRNApp` to install the new dependencies.
 
 6. Copy the polyfills from [the GitHub repo](https://github.com/callstackincubator/amzn-workshops-2025-munich-poc/tree/solution/RockRNApp/polyfills) to a new `RockRNApp/polyfills/` directory
 7. Import & create React Navigation navigator in `RockRNApp/App.tsx`:
@@ -306,58 +310,65 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     ```tsx
     // Rock app imports
     import { HomeScreen } from './HomeScreen';
-    import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+    import {
+      SafeAreaView,
+      SafeAreaProvider,
+    } from 'react-native-safe-area-context';
 
     export default function App() {
       const { isSignedIn } = useAuth();
 
       return (
         <SafeAreaProvider>
-        <TranslationProvider>
-          <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-            <NavigationContainer>
-              {isSignedIn ? (
-                <Stack.Navigator
-                  initialRouteName={ROUTES.SelectUserProfile}
-                  // below: since we don't mount all original screens, part of the app is missing and the missing navigator is mocked below
-                  UNSTABLE_router={original => ({
-                    getStateForAction(state, action, options) {
-                      if (action.type === 'OPEN_DRAWER') {
-                        // instead of opening the non-existent sidebar (drawer), just pop the current screen off the stack
-                        return {
-                          ...state,
-                          routes: [...state.routes].slice(0, -1),
-                          index: state.index - 1,
-                        };
-                      }
+          <TranslationProvider>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+              <NavigationContainer>
+                {isSignedIn ? (
+                  <Stack.Navigator
+                    initialRouteName={ROUTES.SelectUserProfile}
+                    // below: since we don't mount all original screens, part of the app is missing and the missing navigator is mocked below
+                    UNSTABLE_router={(original) => ({
+                      getStateForAction(state, action, options) {
+                        if (action.type === 'OPEN_DRAWER') {
+                          // instead of opening the non-existent sidebar (drawer), just pop the current screen off the stack
+                          return {
+                            ...state,
+                            routes: [...state.routes].slice(0, -1),
+                            index: state.index - 1,
+                          };
+                        }
 
-                      return original.getStateForAction(state, action, options);
-                    },
-                  })}
-                  screenOptions={{
-                    headerShown: false,
-                  }}
-                >
-                  <Stack.Screen name="Home" component={HomeScreen} />
+                        return original.getStateForAction(
+                          state,
+                          action,
+                          options
+                        );
+                      },
+                    })}
+                    screenOptions={{
+                      headerShown: false,
+                    }}
+                  >
+                    <Stack.Screen name="Home" component={HomeScreen} />
 
-                  <Stack.Screen
-                    name={ROUTES.Settings}
-                    component={SettingsStack}
-                  />
-                  <Stack.Screen name={ROUTES.Drawer} component={HomeScreen} />
+                    <Stack.Screen
+                      name={ROUTES.Settings}
+                      component={SettingsStack}
+                    />
+                    <Stack.Screen name={ROUTES.Drawer} component={HomeScreen} />
 
-                  <Stack.Screen
-                    name={ROUTES.SelectUserProfile}
-                    component={SelectUserProfile}
-                  />
-                </Stack.Navigator>
-              ) : (
-                <Login />
-              )}
-            </NavigationContainer>
-          </SafeAreaView>
-        </TranslationProvider>
-      </SafeAreaProvider>
+                    <Stack.Screen
+                      name={ROUTES.SelectUserProfile}
+                      component={SelectUserProfile}
+                    />
+                  </Stack.Navigator>
+                ) : (
+                  <Login />
+                )}
+              </NavigationContainer>
+            </SafeAreaView>
+          </TranslationProvider>
+        </SafeAreaProvider>
       );
     }
     ```
@@ -385,15 +396,19 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     ```
 
 2.  In the RockRNApp project you can now package an AAR for Android & publish to Maven local from `RockRNApp/`:
+
     ```sh
     npm run publish-local:aar
     ```
+
     Verify the artifact has been published:
+
     ```sh
     ls ~/.m2/repository/com/rockrnappreact/rockrnapp
     ```
 
 3.  (Optional) Prepare the iOS artifact from `RockRNApp/`:
+
     ```sh
     cd ios
     pod install
@@ -402,13 +417,14 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     ```
 
 4.  (Optional) You can run the Rock React Native app standalone on Android or iOS to verify it works:
+
     ```sh
     adb reverse tcp:8081 tcp:8081
     npm run android
     ```
-    
+
     or for iOS:
-    
+
     ```sh
     npm run ios -- --no-install-pods
     ```
@@ -497,196 +513,196 @@ Now, we will follow the [Brownfield Android documentation](https://www.rockjs.de
    <details>
    <summary>Full MainActivity.kt file with Ready-to-use Compose UI</summary>
 
-   ```kotlin
-   package com.workshops.brownfieldtestapp
-   import android.os.Bundle
-   import android.widget.Toast
-   import androidx.activity.compose.BackHandler
-   import androidx.activity.compose.setContent
-   import androidx.appcompat.app.AppCompatActivity
-   import androidx.compose.animation.animateContentSize
-   import androidx.compose.animation.core.FastOutSlowInEasing
-   import androidx.compose.animation.core.animateDpAsState
-   import androidx.compose.animation.core.tween
-   import androidx.compose.foundation.background
-   import androidx.compose.foundation.horizontalScroll
-   import androidx.compose.foundation.layout.Arrangement
-   import androidx.compose.foundation.layout.Box
-   import androidx.compose.foundation.layout.Column
-   import androidx.compose.foundation.layout.Row
-   import androidx.compose.foundation.layout.fillMaxSize
-   import androidx.compose.foundation.layout.fillMaxWidth
-   import androidx.compose.foundation.layout.padding
-   import androidx.compose.foundation.rememberScrollState
-   import androidx.compose.material3.Button
-   import androidx.compose.material3.ButtonDefaults
-   import androidx.compose.material3.ExperimentalMaterial3Api
-   import androidx.compose.material3.MaterialTheme
-   import androidx.compose.material3.Surface
-   import androidx.compose.material3.Switch
-   import androidx.compose.material3.Text
-   import androidx.compose.runtime.Composable
-   import androidx.compose.runtime.getValue
-   import androidx.compose.runtime.mutableStateOf
-   import androidx.compose.runtime.remember
-   import androidx.compose.runtime.setValue
-   import androidx.compose.ui.Alignment
-   import androidx.compose.ui.Modifier
-   import androidx.compose.ui.graphics.Color
-   import androidx.compose.ui.graphics.RectangleShape
-   import androidx.compose.ui.platform.LocalContext
-   import androidx.compose.ui.unit.dp
-   import androidx.fragment.compose.AndroidFragment
-   import com.callstack.reactnativebrownfield.ReactNativeFragment
-   import com.callstack.reactnativebrownfield.constants.ReactNativeFragmentArgNames
-   import com.rockrnappreact.ReactNativeHostManager
-   import com.workshops.brownfieldtestapp.ui.theme.BrownfieldTestAppandroidTheme
+```kotlin
+package com.workshops.brownfieldtestapp
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.fragment.compose.AndroidFragment
+import com.callstack.reactnativebrownfield.ReactNativeFragment
+import com.callstack.reactnativebrownfield.constants.ReactNativeFragmentArgNames
+import com.rockrnappreact.ReactNativeHostManager
+import com.workshops.brownfieldtestapp.ui.theme.BrownfieldTestAppandroidTheme
 
-   object Constants {
-       val ReactNativeCategory = "React Native"
+object Constants {
+    val ReactNativeCategory = "React Native"
 
-       val Categories = listOf(
-           "Movies",
-           "TV Shows",
-           ReactNativeCategory,
-           "Sports",
-           "News"
-       )
+    val Categories = listOf(
+        "Movies",
+        "TV Shows",
+        ReactNativeCategory,
+        "Sports",
+        "News"
+    )
 
-       val ReactNativeCategoryIndex = Categories.indexOf(ReactNativeCategory)
-   }
+    val ReactNativeCategoryIndex = Categories.indexOf(ReactNativeCategory)
+}
 
-   class MainActivity : AppCompatActivity() {
-       @OptIn(ExperimentalMaterial3Api::class)
-       override fun onCreate(savedInstanceState: Bundle?) {
-           super.onCreate(savedInstanceState)
+class MainActivity : AppCompatActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-           // Initialize React Native
-           ReactNativeHostManager.initialize(this.application) {
-               println("JS bundle loaded")
-           }
+        // Initialize React Native
+        ReactNativeHostManager.initialize(this.application) {
+            println("JS bundle loaded")
+        }
 
-           setContent {
-               BrownfieldTestAppandroidTheme(darkTheme = true) {
-                   Surface(
-                       modifier = Modifier.fillMaxSize(),
-                       shape = RectangleShape
-                   ) {
-                       MainScreen()
-                   }
-               }
-           }
-       }
-   }
+        setContent {
+            BrownfieldTestAppandroidTheme(darkTheme = true) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    shape = RectangleShape
+                ) {
+                    MainScreen()
+                }
+            }
+        }
+    }
+}
 
-   @Composable
-   fun MainScreen() {
-       val context = LocalContext.current
-       var selectedCategory by remember { mutableStateOf(0) }
-       var isSettingsEnabled by remember { mutableStateOf(false) }
+@Composable
+fun MainScreen() {
+    val context = LocalContext.current
+    var selectedCategory by remember { mutableStateOf(0) }
+    var isSettingsEnabled by remember { mutableStateOf(false) }
 
-       val showReactNative = selectedCategory == Constants.ReactNativeCategoryIndex
+    val showReactNative = selectedCategory == Constants.ReactNativeCategoryIndex
 
-       BackHandler(enabled = selectedCategory > 0) {
-           Toast.makeText(context, "Native - returning home", Toast.LENGTH_SHORT)
-               .show()
-           selectedCategory = 0
-       }
+    BackHandler(enabled = selectedCategory > 0) {
+        Toast.makeText(context, "Native - returning home", Toast.LENGTH_SHORT)
+            .show()
+        selectedCategory = 0
+    }
 
-       val rootContentPadding by animateDpAsState(
-           targetValue = if (showReactNative) 4.dp else 32.dp,
-           label = "paddingAnim",
-           animationSpec = tween(
-               durationMillis = 800,
-               easing = FastOutSlowInEasing
-           ),
-       )
+    val rootContentPadding by animateDpAsState(
+        targetValue = if (showReactNative) 4.dp else 32.dp,
+        label = "paddingAnim",
+        animationSpec = tween(
+            durationMillis = 800,
+            easing = FastOutSlowInEasing
+        ),
+    )
 
-       Column(
-           modifier = Modifier
-               .fillMaxSize()
-               .padding(rootContentPadding)
-               .animateContentSize()
-       ) {
-           if (!showReactNative) {
-               // Title
-               Text(
-                   text = "Android TV Demo",
-                   style = MaterialTheme.typography.headlineLarge,
-                   modifier = Modifier.padding(bottom = 24.dp),
-               )
-           }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(rootContentPadding)
+            .animateContentSize()
+    ) {
+        if (!showReactNative) {
+            // Title
+            Text(
+                text = "Android TV Demo",
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.padding(bottom = 24.dp),
+            )
+        }
 
-           // Categories
-           Row(
-               modifier = Modifier.padding(bottom=24.dp).horizontalScroll(rememberScrollState()),
-               horizontalArrangement = Arrangement.spacedBy(16.dp),
-           ) {
-               Constants.Categories.forEachIndexed { index, category ->
-                   val active = selectedCategory == index
+        // Categories
+        Row(
+            modifier = Modifier.padding(bottom=24.dp).horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            Constants.Categories.forEachIndexed { index, category ->
+                val active = selectedCategory == index
 
-                   Button(
-                       onClick = { selectedCategory = index },
-                       colors = ButtonDefaults.buttonColors(
-                           containerColor = if (active)
-                               MaterialTheme.colorScheme.primary
-                           else
-                               MaterialTheme.colorScheme.surface
-                       )
-                   ) {
-                       Text(
-                           category,
-                           color = if (active) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
-                       )
-                   }
-               }
-           }
+                Button(
+                    onClick = { selectedCategory = index },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (active)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            MaterialTheme.colorScheme.surface
+                    )
+                ) {
+                    Text(
+                        category,
+                        color = if (active) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        }
 
-           if (!showReactNative) {
-               // Settings Toggle
-               Row(
-                   modifier = Modifier.padding(bottom = 24.dp),
-                   verticalAlignment = Alignment.CenterVertically
-               ) {
-                   Switch(
-                       checked = isSettingsEnabled,
-                       onCheckedChange = { isSettingsEnabled = it },
-                       modifier = Modifier.padding(end = 16.dp)
-                   )
-                   Text(
-                       text = if (isSettingsEnabled) "Settings Enabled" else "Settings Disabled",
-                       style = MaterialTheme.typography.bodyLarge
-                   )
-               }
-           }
+        if (!showReactNative) {
+            // Settings Toggle
+            Row(
+                modifier = Modifier.padding(bottom = 24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Switch(
+                    checked = isSettingsEnabled,
+                    onCheckedChange = { isSettingsEnabled = it },
+                    modifier = Modifier.padding(end = 16.dp)
+                )
+                Text(
+                    text = if (isSettingsEnabled) "Settings Enabled" else "Settings Disabled",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+        }
 
-           // Content Preview
-           Box(
-               modifier = Modifier
-                   .fillMaxWidth()
-                   .weight(1f)
-                   .padding(top = if (showReactNative) 0.dp else 24.dp)
-           ) {
-               if (showReactNative) {
-                   AndroidFragment<ReactNativeFragment>(
-                       arguments = Bundle().apply {
-                           putString(ReactNativeFragmentArgNames.ARG_MODULE_NAME, "RockRNApp")
-                       }, modifier = Modifier
-                           .fillMaxSize()
-                   )
-               } else {
-                   Text(
-                       text = "Currently selected: ${
-                           Constants.Categories[selectedCategory]
-                       } ${if (isSettingsEnabled) "(Settings Enabled)" else ""}",
-                       style = MaterialTheme.typography.bodyLarge,
-                       modifier = Modifier.align(Alignment.Center)
-                   )
-               }
-           }
-       }
-   }
-   ```
+        // Content Preview
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(top = if (showReactNative) 0.dp else 24.dp)
+        ) {
+            if (showReactNative) {
+                AndroidFragment<ReactNativeFragment>(
+                    arguments = Bundle().apply {
+                        putString(ReactNativeFragmentArgNames.ARG_MODULE_NAME, "RockRNApp")
+                    }, modifier = Modifier
+                        .fillMaxSize()
+                )
+            } else {
+                Text(
+                    text = "Currently selected: ${
+                        Constants.Categories[selectedCategory]
+                    } ${if (isSettingsEnabled) "(Settings Enabled)" else ""}",
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+        }
+    }
+}
+```
 
    </details>
    <br />
@@ -715,20 +731,21 @@ Now, we will follow the [Brownfield Android documentation](https://www.rockjs.de
 
 8. React Native requires that the host app's theme is `AppCompat` or a descendant thereof, thus, modify `app/src/main/res/values/themes.xml` and update the existing style tag to have the `parent` attribute set to `Theme.AppCompat.DayNight.NoActionBar`.
 
-9.  Now, you're ready to run the app on your native Android device or emulator through Android Studio.
+9. Now, you're ready to run the app on your native Android device or emulator through Android Studio.
 
    8.1. If you run in debug mode, the React Native app will expect a dev server (Metro) running to serve our JavaScript code. You can start it by running this in the `RockRNApp` project directory:
 
-   ```sh
-   npm start
-   ```
+```sh
+npm start
+```
 
-   and also will require you to forward port `8081`:
-   ```sh
-   adb reverse tcp:8081 tcp:8081
-   ```
+and also will require you to forward port `8081`:
 
-   8.2. If you run in release mode, there's nothing you need to do. The app will automatically use the pre-built JavaScript bundle that we fetch from local Maven repository.
+```sh
+adb reverse tcp:8081 tcp:8081
+```
+
+8.2. If you run in release mode, there's nothing you need to do. The app will automatically use the pre-built JavaScript bundle that we fetch from local Maven repository.
 
 # React Native iOS Brownfield (optional)
 
@@ -741,173 +758,175 @@ First, bootstrap an empty iOS project:
 ## Brownfield iOS app
 
 1. Package the RockRNApp project as an XCFramework:
-  ```sh
-  npm run package:ios
-  ```
 
-  Build may take a few minutes for the first time. Afterwards, you will see the following:
-  ![](./img/rock-package-xcframework.png)
+```sh
+npm run package:ios
+```
+
+Build may take a few minutes for the first time. Afterwards, you will see the following:
+![](./img/rock-package-xcframework.png)
 
 2. Run `open .rock/cache/ios/package` & drag-and-drop all 3 files: `hermes.xcframework`, `ReactBrownfield.xcframework` and `RockRNAppReact.xcframework` to XCode. You can select "Reference files in place" when prompted so as not to have to copy the XCFramework files every time you re-package them.
    ![](./img/xcode-add-xcframework.png)
 
-  Ensure the frameworks are embedded in your app:
+Ensure the frameworks are embedded in your app:
 
-  ![](./img/xcode-embed-frameworks.png)
+![](./img/xcode-embed-frameworks.png)
 
 3. Inside `BrownfieldTestApp-ios/BrownfieldTestApp-ios/BrownfieldTestApp_iosApp.swift`, initialize RN Brownfield:
 
-  ```swift
-  import SwiftUI
-  import ReactBrownfield // import RN Brownfield
-  import RockRNAppReact // this import contains ReactNativeBundle
+```swift
+import SwiftUI
+import ReactBrownfield // import RN Brownfield
+import RockRNAppReact // this import contains ReactNativeBundle
 
-  @main
-  struct BrownfieldTestApp_iosApp: App {
-      // add the init method below
-      init() {
-          ReactNativeBrownfield.shared.bundle = ReactNativeBundle
-          ReactNativeBrownfield.shared.startReactNative {
-              print("React Native bundle loaded")
-          }
-      }
+@main
+struct BrownfieldTestApp_iosApp: App {
+    // add the init method below
+    init() {
+        ReactNativeBrownfield.shared.bundle = ReactNativeBundle
+        ReactNativeBrownfield.shared.startReactNative {
+            print("React Native bundle loaded")
+        }
+    }
 
-      var body: some Scene {
-          WindowGroup {
-              ContentView()
-          }
-      }
-  }
-  ```
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+```
+
 4. Replace `BrownfieldTestApp-ios/BrownfieldTestApp-ios/ContentView.swift` with the following code to render a React Native screen inside SwiftUI:
 
-  ```swift
-  import ReactBrownfield
-  import SwiftUI
+```swift
+import ReactBrownfield
+import SwiftUI
 
-  struct Constants {
-      static let reactNativeCategory = "React Native"
-      static let categories = [
-          "Movies",
-          "TV Shows",
-          reactNativeCategory,
-          "Sports",
-          "News",
-      ]
-      static let reactNativeCategoryIndex =
-          categories.firstIndex(of: reactNativeCategory) ?? 0
-  }
+struct Constants {
+    static let reactNativeCategory = "React Native"
+    static let categories = [
+        "Movies",
+        "TV Shows",
+        reactNativeCategory,
+        "Sports",
+        "News",
+    ]
+    static let reactNativeCategoryIndex =
+        categories.firstIndex(of: reactNativeCategory) ?? 0
+}
 
-  struct ContentView: View {
-      @State private var selectedCategory = 0
-      @State private var isSettingsEnabled = false
-      @Namespace private var animation
+struct ContentView: View {
+    @State private var selectedCategory = 0
+    @State private var isSettingsEnabled = false
+    @Namespace private var animation
 
-      var showReactNative: Bool {
-          selectedCategory == Constants.reactNativeCategoryIndex
-      }
+    var showReactNative: Bool {
+        selectedCategory == Constants.reactNativeCategoryIndex
+    }
 
-      @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss) private var dismiss
 
-      var body: some View {
-          NavigationStack {
-              VStack(alignment: .leading, spacing: 24) {
-                  if !showReactNative {
-                      Text("iOS SwiftUI Demo")
-                          .font(.largeTitle)
-                          .bold()
-                  }
+    var body: some View {
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 24) {
+                if !showReactNative {
+                    Text("iOS SwiftUI Demo")
+                        .font(.largeTitle)
+                        .bold()
+                }
 
-                  // Categories Row
-                  ScrollView(.horizontal, showsIndicators: false) {
-                      HStack(spacing: 16) {
-                          ForEach(Constants.categories.indices, id: \.self) {
-                              index in
-                              let category = Constants.categories[index]
-                              Button(action: {
-                                  withAnimation(.easeInOut(duration: 0.3)) {
-                                      selectedCategory = index
-                                  }
-                              }) {
-                                  Text(category)
-                                      .padding(.horizontal, 16)
-                                      .padding(.vertical, 8)
-                                      .background(
-                                          RoundedRectangle(cornerRadius: 8)
-                                              .fill(
-                                                  selectedCategory == index
-                                                      ? Color.accentColor
-                                                      : Color(.systemGray5)
-                                              )
-                                      )
-                                      .foregroundColor(
-                                          selectedCategory == index
-                                              ? .white : .primary
-                                      )
-                              }
-                          }
-                      }
-                  }
+                // Categories Row
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(Constants.categories.indices, id: \.self) {
+                            index in
+                            let category = Constants.categories[index]
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    selectedCategory = index
+                                }
+                            }) {
+                                Text(category)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 8)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(
+                                                selectedCategory == index
+                                                    ? Color.accentColor
+                                                    : Color(.systemGray5)
+                                            )
+                                    )
+                                    .foregroundColor(
+                                        selectedCategory == index
+                                            ? .white : .primary
+                                    )
+                            }
+                        }
+                    }
+                }
 
-                  if !showReactNative {
-                      // Settings Toggle
-                      Toggle(isOn: $isSettingsEnabled.animation(.easeInOut)) {
-                          Text(
-                              isSettingsEnabled
-                                  ? "Settings Enabled" : "Settings Disabled"
-                          )
-                          .font(.body)
-                      }
-                      .toggleStyle(SwitchToggleStyle(tint: .accentColor))
-                  }
+                if !showReactNative {
+                    // Settings Toggle
+                    Toggle(isOn: $isSettingsEnabled.animation(.easeInOut)) {
+                        Text(
+                            isSettingsEnabled
+                                ? "Settings Enabled" : "Settings Disabled"
+                        )
+                        .font(.body)
+                    }
+                    .toggleStyle(SwitchToggleStyle(tint: .accentColor))
+                }
 
-                  // Content Area
-                  ZStack {
-                      if showReactNative {
-                          // React Native View
-                          ReactNativeView(moduleName: "RockRNApp")
-                              .navigationBarHidden(true)
-                      } else {
-                          Text(
-                              "Currently selected: \(Constants.categories[selectedCategory]) \(isSettingsEnabled ? "(Settings Enabled)" : "")"
-                          )
-                          .font(.body)
-                          .frame(maxWidth: .infinity, maxHeight: .infinity)
-                          .multilineTextAlignment(.center)
-                          .padding()
-                      }
-                  }
-                  .frame(maxWidth: .infinity, maxHeight: .infinity)
-                  .background(Color(.secondarySystemBackground))
-                  .cornerRadius(16)
-                  .animation(.easeInOut(duration: 0.3), value: showReactNative)
-              }
-              .padding(showReactNative ? 4 : 32)
-              .animation(.easeInOut(duration: 0.8), value: showReactNative)
-              .navigationTitle("Main Screen")
-              .toolbar {
-                  // Simulate BackHandler (only active when not home)
-                  if selectedCategory > 0 {
-                      Button("Back") {
-                          withAnimation {
-                              selectedCategory = 0
-                          }
-                      }
-                  }
-              }
-          }
-          .toolbar {
-              ToolbarItem(placement: .navigationBarLeading) {
-                  Button(action: { dismiss() }) {
-                      Label("Back", systemImage: "chevron.left")
-                          .labelStyle(.titleAndIcon)
-                  }
-              }
-          }
-      }
-  }
+                // Content Area
+                ZStack {
+                    if showReactNative {
+                        // React Native View
+                        ReactNativeView(moduleName: "RockRNApp")
+                            .navigationBarHidden(true)
+                    } else {
+                        Text(
+                            "Currently selected: \(Constants.categories[selectedCategory]) \(isSettingsEnabled ? "(Settings Enabled)" : "")"
+                        )
+                        .font(.body)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(16)
+                .animation(.easeInOut(duration: 0.3), value: showReactNative)
+            }
+            .padding(showReactNative ? 4 : 32)
+            .animation(.easeInOut(duration: 0.8), value: showReactNative)
+            .navigationTitle("Main Screen")
+            .toolbar {
+                // Simulate BackHandler (only active when not home)
+                if selectedCategory > 0 {
+                    Button("Back") {
+                        withAnimation {
+                            selectedCategory = 0
+                        }
+                    }
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: { dismiss() }) {
+                    Label("Back", systemImage: "chevron.left")
+                        .labelStyle(.titleAndIcon)
+                }
+            }
+        }
+    }
+}
 
-  #Preview {
-      ContentView()
-  }
-  ```
+#Preview {
+    ContentView()
+}
+```
