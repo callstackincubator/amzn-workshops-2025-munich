@@ -83,11 +83,15 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
    "babel-plugin-module-resolver": "^5.0.2"
    ```
 
-3. Append Babel configuration (to the `RockRNApp/babel.config.js` file) for aliases of Vega Sports App code to be able to resolve aliases. This is specific to this exact project and is a mechanism developers may use, but it is not necessary for any setup:
+3. Update Babel and TypeScript configuration in the `RockRNApp/babel.config.js` and `RockRNApp/tsconfig.json` files for aliases of Vega Sports App code to be able to resolve aliases.
 
-   ```tsx
+   _This is specific to this exact project and is a mechanism developers may use, but it is not strictl necessary for every app setup._
+
+   `RockRNApp/babel.config.js` file:
+
+   ```javascript
    module.exports = {
-     // ...
+     presets: ['module:@react-native/babel-preset'],
      plugins: [
        'react-native-worklets/plugin',
        [
@@ -115,7 +119,34 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
    };
    ```
 
-4. Update `RockRNApp/metro.config.js` to match the below contents:
+   We'll need similar changes for TypeScript in the `RockRNApp/tsconfig.json` file:
+
+   ```json
+   {
+     "extends": "@react-native/typescript-config",
+     "include": ["**/*.ts", "**/*.tsx"],
+     "exclude": ["**/node_modules", "**/Pods"],
+     "compilerOptions": {
+       "baseUrl": ".",
+       "paths": {
+         "@Api/*": ["../vega-sports-app/src/api/*"],
+         "@AppAssets/*": ["../vega-sports-app/src/assets/*"],
+         "@AppComponents/*": ["../vega-sports-app/src/components/*"],
+         "@AppScreens/*": ["../vega-sports-app/src/screens/*"],
+         "@AppServices/*": ["../vega-sports-app/src/services/*"],
+         "@AppUtils/*": ["../vega-sports-app/src/utils/*"],
+         "@AppTestUtils/*": ["../vega-sports-app/src/test-utils/*"],
+         "@AppTheme/*": ["../vega-sports-app/src/theme/*"],
+         "@AppStore/*": ["../vega-sports-app/src/store/*"],
+         "@AppModels/*": ["../vega-sports-app/src/models/*"],
+         "@AppSrc/*": ["../vega-sports-app/src/*"],
+         "@AppRoot/*": ["../vega-sports-app/*"]
+       }
+     }
+   }
+   ```
+
+4. Because of the way Vega Sports App is structured, we need to update `RockRNApp/metro.config.js` to handle `polyfills` directory  to match the below contents:
 
    ```javascript
    const {
@@ -377,7 +408,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
 > Checkpoint - at this point, your directory structure should look like this:
 > ![](./img/fs-structure-stage-2.png)
 
-11.  Normally, you would configure a separate, secure keystore for release signing. For demonstration needs of this workshops, we will use the debug keystore for release - adjust the `RockRNApp/android/app/build.gradle` file accordingly:
+11. Normally, you would configure a separate, secure keystore for release signing. For demonstration needs of this workshops, we will use the debug keystore for release - adjust the `RockRNApp/android/app/build.gradle` file accordingly:
 
     ```gradle
     buildTypes {
@@ -395,7 +426,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     }
     ```
 
-12.  In the RockRNApp project you can now package an AAR for Android & publish to Maven local from `RockRNApp/`:
+12. In the RockRNApp project you can now package an AAR for Android & publish to Maven local from `RockRNApp/`:
 
     ```sh
     npm run publish-local:aar
@@ -407,7 +438,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     ls ~/.m2/repository/com/rockrnappreact/rockrnapp
     ```
 
-13.  (Optional) Prepare the iOS artifact from `RockRNApp/`:
+13. (Optional) Prepare the iOS artifact from `RockRNApp/`:
 
     ```sh
     cd ios
@@ -416,7 +447,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     npm run package:ios
     ```
 
-14.  (Optional) You can run the Rock React Native app standalone on Android or iOS to verify it works:
+14. (Optional) You can run the Rock React Native app standalone on Android or iOS to verify it works:
 
     ```sh
     adb reverse tcp:8081 tcp:8081
