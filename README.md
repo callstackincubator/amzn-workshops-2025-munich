@@ -377,7 +377,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
 > Checkpoint - at this point, your directory structure should look like this:
 > ![](./img/fs-structure-stage-2.png)
 
-1.  Normally, you would configure a separate, secure keystore for release signing. For demonstration needs of this workshops, we will use the debug keystore for release - adjust the `RockRNApp/android/app/build.gradle` file accordingly:
+11.  Normally, you would configure a separate, secure keystore for release signing. For demonstration needs of this workshops, we will use the debug keystore for release - adjust the `RockRNApp/android/app/build.gradle` file accordingly:
 
     ```gradle
     buildTypes {
@@ -395,7 +395,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     }
     ```
 
-2.  In the RockRNApp project you can now package an AAR for Android & publish to Maven local from `RockRNApp/`:
+12.  In the RockRNApp project you can now package an AAR for Android & publish to Maven local from `RockRNApp/`:
 
     ```sh
     npm run publish-local:aar
@@ -407,7 +407,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     ls ~/.m2/repository/com/rockrnappreact/rockrnapp
     ```
 
-3.  (Optional) Prepare the iOS artifact from `RockRNApp/`:
+13.  (Optional) Prepare the iOS artifact from `RockRNApp/`:
 
     ```sh
     cd ios
@@ -416,7 +416,7 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
     npm run package:ios
     ```
 
-4.  (Optional) You can run the Rock React Native app standalone on Android or iOS to verify it works:
+14.  (Optional) You can run the Rock React Native app standalone on Android or iOS to verify it works:
 
     ```sh
     adb reverse tcp:8081 tcp:8081
