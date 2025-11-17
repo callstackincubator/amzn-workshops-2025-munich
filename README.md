@@ -43,9 +43,9 @@ Prepare your development environment:
    npm install
    ```
 
-   > [!IMPORTANT]
-   > Checkpoint - at this point, your directory structure should look like this:
-   > ![](./img/fs-structure-stage-1.png)
+> [!IMPORTANT]
+> Checkpoint - at this point, your directory structure should look like this:
+> ![](./img/fs-structure-stage-1.png)
 
 ## Enable code sharing between Vega Sports App and Rock React Native mobile app
 
@@ -268,7 +268,17 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
 
 5. Run `npm install` inside `RockRNApp` to install the new dependencies.
 
-6. Copy the polyfills from [the GitHub repo](https://github.com/callstackincubator/amzn-workshops-2025-munich-poc/tree/solution/RockRNApp/polyfills) to a new `RockRNApp/polyfills/` directory
+6. Copy the polyfills from [the GitHub repo](https://github.com/callstackincubator/amzn-workshops-2025-munich-poc/tree/solution/RockRNApp/polyfills) to a new `RockRNApp/polyfills/` directory. These polyfills are specific to the libraries and APIs used by the Vega Sports App code. It's likely that you'll need to add similar ones to ensure cross-platform compatibility. Here's what each polyfill does:
+
+   - `asset-resolver-lib.ts`: exports `AssetResolver` class which is used for supplying the `keplerscript-kepleri18n-lib` library with translation template strings
+   - `kepler-ui-components.tsx`: VegaOS provides `@amazon-devices/kepler-ui-components` which exports built-in React Native components with modifications, such as:
+     - `Button` - similar to react-native's `Button` but with custom props
+     - `Typography` - new component wrapping `Text` 
+     - `useTheme` - built-in theming hook that VegaOS components use
+   - `keplerscript-kepleri18n-lib.ts`: built-in i18n formatting solution from VegaOS
+   - `react-native-kepler.ts`: provides Vega-specific and React Native standard APIs
+   - `react-native-w3cmedia.ts`: Vega Sports App-specific library that is used in the code, this is a VegaOS library that provides W3C compliant React Native and Javascript class components
+
 7. Import & create React Navigation navigator in `RockRNApp/App.tsx`:
 
    ```tsx
@@ -403,6 +413,88 @@ In this stage, we will configure RockRNApp to use code from the Vega Sports App.
       );
     }
     ```
+
+
+   <details>
+   <summary>Full App.tsx file after all changes</summary>
+
+```kotlin
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+// vega-sports-app imports
+import { TranslationProvider } from '@AppServices/i18n';
+import { useAuth } from '@AppServices/auth';
+
+import { ROUTES } from '@AppSrc/navigators/constants';
+
+import { Login } from '@AppScreens/Login';
+import { SelectUserProfile } from '@AppScreens/SelectUserProfile';
+import { SettingsStack } from '@AppScreens/Settings/SettingsStack';
+
+// Rock app imports
+import { HomeScreen } from './HomeScreen';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+
+export default function App() {
+  const { isSignedIn } = useAuth();
+
+  return (
+    <SafeAreaProvider>
+      <TranslationProvider>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+          <NavigationContainer>
+            {isSignedIn ? (
+              <Stack.Navigator
+                initialRouteName={ROUTES.SelectUserProfile}
+                // below: since we don't mount all original screens, part of the app is missing and the missing navigator is mocked below
+                UNSTABLE_router={original => ({
+                  getStateForAction(state, action, options) {
+                    if (action.type === 'OPEN_DRAWER') {
+                      // instead of opening the non-existent sidebar (drawer), just pop the current screen off the stack
+                      return {
+                        ...state,
+                        routes: [...state.routes].slice(0, -1),
+                        index: state.index - 1,
+                      };
+                    }
+
+                    return original.getStateForAction(state, action, options);
+                  },
+                })}
+                screenOptions={{
+                  headerShown: false,
+                }}
+              >
+                <Stack.Screen name="Home" component={HomeScreen} />
+
+                <Stack.Screen
+                  name={ROUTES.Settings}
+                  component={SettingsStack}
+                />
+                <Stack.Screen name={ROUTES.Drawer} component={HomeScreen} />
+
+                <Stack.Screen
+                  name={ROUTES.SelectUserProfile}
+                  component={SelectUserProfile}
+                />
+              </Stack.Navigator>
+            ) : (
+              <Login />
+            )}
+          </NavigationContainer>
+        </SafeAreaView>
+      </TranslationProvider>
+    </SafeAreaProvider>
+  );
+}
+```
+
+   </details>
+   <br />
+
 
 > [!IMPORTANT]
 > Checkpoint - at this point, your directory structure should look like this:
