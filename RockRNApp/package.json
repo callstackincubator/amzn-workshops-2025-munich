@@ -10,7 +10,7 @@
     "android": "rock run:android",
     "package:ios": "rock package:ios --scheme RockRNAppReact --configuration Release",
     "package:aar": "rock package:aar --variant Release --module-name rockrnappreact",
-    "publish-local:aar": "pnpm package:aar && rock publish-local:aar --module-name rockrnappreact"
+    "publish-local:aar": "npm run package:aar && rock publish-local:aar --module-name rockrnappreact"
   },
   "dependencies": {
     "@callstack/react-native-brownfield": "^2.0.0",
